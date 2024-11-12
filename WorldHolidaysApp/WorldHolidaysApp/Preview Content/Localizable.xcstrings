@@ -1,0 +1,54 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "«Christmas»" : {
+      "comment" : "\"Christmas\"",
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "«Рождество»"
+          }
+        }
+      }
+    },
+    "«Details»" : {
+      "comment" : "\"Details\"",
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "«Детали»"
+          }
+        }
+      }
+    },
+    "«Holidays»" : {
+      "comment" : "\"Holidays\"",
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "«Праздник»"
+          }
+        }
+      }
+    },
+    "«New Year»" : {
+      "comment" : "\"New Year\"",
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "«Новый год»"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}

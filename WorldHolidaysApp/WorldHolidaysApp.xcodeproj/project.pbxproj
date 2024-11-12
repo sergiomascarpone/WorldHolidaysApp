@@ -192,9 +192,19 @@
 			knownRegions = (
 				en,
 				Base,
+				de,
+				fr,
+				it,
+				ru,
+				es,
+				pl,
 			);
 			mainGroup = 1BD944A62CE359FE00E8D813;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				1BD944DC2CE35CEE00E8D813 /* XCRemoteSwiftPackageReference "swift-async-algorithms" */,
+				1BD944DD2CE35E0500E8D813 /* XCRemoteSwiftPackageReference "SwiftDate" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 1BD944B02CE359FF00E8D813 /* Products */;
 			projectDirPath = "";
@@ -558,6 +568,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		1BD944DC2CE35CEE00E8D813 /* XCRemoteSwiftPackageReference "swift-async-algorithms" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-async-algorithms.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.2;
+			};
+		};
+		1BD944DD2CE35E0500E8D813 /* XCRemoteSwiftPackageReference "SwiftDate" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/malcommac/SwiftDate.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
 	};
 	rootObject = 1BD944A72CE359FE00E8D813 /* Project object */;
 }

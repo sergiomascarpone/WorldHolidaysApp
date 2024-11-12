@@ -48,6 +48,57 @@
           }
         }
       }
+    },
+    "Calendar" : {
+
+    },
+    "Country" : {
+
+    },
+    "Details" : {
+
+    },
+    "Filters" : {
+
+    },
+    "Hello, World!" : {
+
+    },
+    "Holiday Calendar" : {
+
+    },
+    "Holiday Type" : {
+
+    },
+    "Holidays List" : {
+
+    },
+    "Language" : {
+
+    },
+    "List" : {
+
+    },
+    "Loading holidays..." : {
+
+    },
+    "No holidays found for this year." : {
+
+    },
+    "Select Country" : {
+
+    },
+    "Select Date" : {
+
+    },
+    "Select Language" : {
+
+    },
+    "Select Type" : {
+
+    },
+    "Settings" : {
+
     }
   },
   "version" : "1.0"

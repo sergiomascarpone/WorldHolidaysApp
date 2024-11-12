@@ -12,7 +12,7 @@ struct FiltersView: View {
     @State private var holidayTypes = ["All", "National", "Religious", "Seasonal"]
     @State private var selectedType = "All"
 
-    let countries = ["US": "United States", "DE": "Germany", "FR": "France", "RU": "Russia"]
+    let countries = ["US": "United States", "DE": "Germany", "FR": "France", "RU": "Russia", "BY:": "Belarus"]
 
     var body: some View {
         Form {

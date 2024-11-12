@@ -24,7 +24,8 @@ struct HolidaysListView: View {
                         VStack(alignment: .leading) {
                             Text(holiday.name)
                                 .font(.headline)
-                            Text(holiday.date.formatted(date: .long, time: .omitted))
+                            // Используем правильный формат для даты праздника
+                            Text(holiday.date, style: .date)
                                 .font(.subheadline)
                                 .foregroundColor(.gray)
                         }
@@ -48,6 +49,7 @@ struct HolidaysListView: View {
     }
 }
 
-//#Preview {
-//    HolidaysListView()
-//}
+
+#Preview {
+    HolidaysListView()
+}

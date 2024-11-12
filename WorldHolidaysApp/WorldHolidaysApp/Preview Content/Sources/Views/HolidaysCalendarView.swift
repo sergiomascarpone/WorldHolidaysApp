@@ -10,6 +10,7 @@ import SwiftUI
 struct HolidaysCalendarView: View {
     @State private var holidays: [Holiday] = []
     @State private var selectedDate: Date = Date()
+    @State private var todayHoliday: Holiday?
     @State private var isLoading = true
     let service = HolidaysService()
     
@@ -23,14 +24,15 @@ struct HolidaysCalendarView: View {
                         .datePickerStyle(GraphicalDatePickerStyle())
                         .padding()
                     
-                    List(filteredHolidays) { holiday in
-                        VStack(alignment: .leading) {
-                            Text(holiday.name)
-                                .font(.headline)
-                            Text(holiday.date.formatted(date: .long, time: .omitted))
-                                .font(.subheadline)
-                                .foregroundColor(.gray)
-                        }
+                    // Проверка, есть ли праздник на сегодняшний день
+                    if let holiday = todayHoliday {
+                        Text("Сегодня праздник: \(holiday.name)")
+                            .font(.headline)
+                            .padding()
+                    } else {
+                        Text("Сегодня нет праздников.")
+                            .font(.headline)
+                            .padding()
                     }
                 }
             }
@@ -41,37 +43,29 @@ struct HolidaysCalendarView: View {
         }
     }
     
-    private var filteredHolidays: [Holiday] {
-        holidays.filter { holiday in
-            let calendar = Calendar.current
-            let formatter = DateFormatter()
-            formatter.dateFormat = "yyyy-MM-dd"
-            formatter.timeZone = TimeZone(abbreviation: "UTC")
-            
-            // Преобразуем обе даты в формат "yyyy-MM-dd" с учетом времени UTC
-            let holidayString = formatter.string(from: holiday.date)
-            let selectedDateString = formatter.string(from: selectedDate)
-
-            // Логируем для проверки
-            print("Selected Date (UTC): \(selectedDateString), Holiday Date (UTC): \(holidayString)")
-
-            // Сравниваем только дату
-            return holidayString == selectedDateString
-        }
-    }
-    
     private func loadHolidays() async {
         let year = Calendar.current.component(.year, from: Date())
         let countryCode = Locale.current.region?.identifier ?? "US"
-        holidays = await service.fetchHolidays(for: year, country: countryCode)
         
-        // Логируем даты
-        print("Selected Date: \(selectedDate)")
-        holidays.forEach { holiday in
-            print("Holiday: \(holiday.name), Date: \(holiday.date)")
+        isLoading = true
+        holidays = await service.fetchHolidays(for: year, country: countryCode)
+        isLoading = false
+        
+        // Определяем сегодняшнюю дату без времени
+        let calendar = Calendar.current
+        let today = calendar.startOfDay(for: Date())
+        
+        // Находим праздник, который совпадает с сегодняшней датой
+        todayHoliday = holidays.first { holiday in
+            let holidayDate = calendar.startOfDay(for: holiday.date)
+            return holidayDate == today
         }
         
-        isLoading = false
+        // Отладочная печать
+        if let holiday = todayHoliday {
+            print("It's a holiday today: \(holiday.name), Дата: \(holiday.date)")
+        } else {
+            print("There's no holidays today.")
+        }
     }
 }
-

@@ -14,7 +14,7 @@ struct HolidayDetailView: View {
         VStack(alignment: .leading, spacing: 10) {
             Text(holiday.name)
                 .font(.title)
-            Text(holiday.description)
+            Text(holiday.description) // Теперь описание есть в модели
                 .font(.body)
             Spacer()
         }
@@ -22,3 +22,4 @@ struct HolidayDetailView: View {
         .navigationTitle("Details")
     }
 }
+

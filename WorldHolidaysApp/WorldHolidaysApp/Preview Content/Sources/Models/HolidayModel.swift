@@ -7,13 +7,14 @@
 
 import Foundation
 
-struct Holiday: Identifiable, Codable {
-    let id: UUID
-    let name: String
-    let date: Date
-    let description: String
-    let countryCode: String
+struct Holiday: Identifiable {
+    var id: UUID
+    var name: String
+    var date: Date
+    var description: String
+    var countryCode: String
 }
+
 
 //// Пример сервиса для загрузки данных (пока заглушка)
 //class HolidayService {

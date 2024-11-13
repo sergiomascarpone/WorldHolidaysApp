@@ -73,6 +73,9 @@
     "Holidays List" : {
 
     },
+    "It's a holiday today: %@" : {
+
+    },
     "Language" : {
 
     },
@@ -100,10 +103,7 @@
     "Settings" : {
 
     },
-    "Сегодня нет праздников." : {
-
-    },
-    "Сегодня праздник: %@" : {
+    "There's no holidays today." : {
 
     }
   },

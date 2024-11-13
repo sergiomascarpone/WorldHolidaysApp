@@ -26,11 +26,11 @@ struct HolidaysCalendarView: View {
                     
                     // Проверка, есть ли праздник на сегодняшний день
                     if let holiday = todayHoliday {
-                        Text("Сегодня праздник: \(holiday.name)")
+                        Text("It's a holiday today: \(holiday.name)")
                             .font(.headline)
                             .padding()
                     } else {
-                        Text("Сегодня нет праздников.")
+                        Text("There's no holidays today.")
                             .font(.headline)
                             .padding()
                     }

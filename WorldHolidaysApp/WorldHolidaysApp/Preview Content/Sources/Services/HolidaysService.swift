@@ -31,7 +31,7 @@ class HolidaysService {
                     Holiday(id: UUID(),
                             name: holiday.name,
                             date: parseDate(from: holiday.date.datetime),
-                            description: holiday.description ?? "No description available",
+                            description: holiday.description,
                             countryCode: holiday.country.id)
                 }
                 print("Загружено праздников: \(holidays.count)")

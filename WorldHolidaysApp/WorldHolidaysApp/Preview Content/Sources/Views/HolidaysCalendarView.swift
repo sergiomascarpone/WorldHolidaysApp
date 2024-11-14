@@ -16,38 +16,29 @@ struct HolidaysCalendarView: View {
     
     var body: some View {
         NavigationView {
-            ZStack {
-                // Фоновый блюр
-                Color.black
-                    .opacity(0.5)  // Полупрозрачный черный фон
-                    .blur(radius: 10) // Эффект размытия
-                    .ignoresSafeArea()  // Убедитесь, что фон растягивается на весь экран
-
-                VStack {
-                    if isLoading {
-                        ProgressView("Loading holidays...")
-                    } else {
-                        DatePicker("Select Date", selection: $selectedDate, displayedComponents: [.date])
-                            .datePickerStyle(GraphicalDatePickerStyle())
+            VStack {
+                if isLoading {
+                    ProgressView("Loading holidays...")
+                } else {
+                    DatePicker("Select Date", selection: $selectedDate, displayedComponents: [.date])
+                        .datePickerStyle(GraphicalDatePickerStyle())
+                        .padding()
+                    
+                    // Проверка, есть ли праздник на сегодняшний день
+                    if let holiday = todayHoliday {
+                        Text("It's a holiday today: \(holiday.name)")
+                            .font(.headline)
                             .padding()
-                        
-                        // Проверка, есть ли праздник на сегодняшний день
-                        if let holiday = todayHoliday {
-                            Text("It's a holiday today: \(holiday.name)")
-                                .font(.headline)
-                                .padding()
-                        } else {
-                            Text("There's no holidays today.")
-                                .font(.headline)
-                                .padding()
-                        }
+                    } else {
+                        Text("There's no holidays today.")
+                            .font(.headline)
+                            .padding()
                     }
-                    Spacer()  // Чтобы гарантировать, что весь экран будет заполнен
                 }
-                .navigationTitle("Holiday Calendar")
-                .task {
-                    await loadHolidays()
-                }
+            }
+            .navigationTitle("Holiday Calendar")
+            .task {
+                await loadHolidays()
             }
         }
     }
@@ -78,6 +69,3 @@ struct HolidaysCalendarView: View {
         }
     }
 }
-
-
-//а теперь давай сделаем наше приложение более оптимизированым и менее затратным для памяти устройства. начиная с каждого файла, один за одним, и до самого конца.

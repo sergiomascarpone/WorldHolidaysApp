@@ -20,7 +20,7 @@ struct SettingsView: View {
         ("pl", "Polski"),
         ("sr", "Српски")
     ]
-
+    
     var body: some View {
         Form {
             Section(header: Text(LocalizationManager.shared.localizedString(forKey: "Select Language"))) {
@@ -32,10 +32,10 @@ struct SettingsView: View {
                 .onChange(of: selectedLanguage) { newLanguage in
                     LocalizationManager.shared.setLanguage(newLanguage)
                 }
-                .onReceive(NotificationCenter.default.publisher(for: .languageDidChange)) { _ in
-                    UIApplication.shared.windows.first?.rootViewController =
-                    UIHostingController(rootView: HolidaysListView())
-                }
+//                .onReceive(NotificationCenter.default.publisher(for: .languageDidChange)) { _ in
+//                    UIApplication.shared.windows.first?.rootViewController =
+//                        UIHostingController(rootView: ContentView())
+//                }
             }
         }
         .navigationTitle(LocalizationManager.shared.localizedString(forKey: "Settings"))
@@ -44,9 +44,6 @@ struct SettingsView: View {
         }
     }
 }
-
-
-
 
 //#Preview {
 //    SettingsView()

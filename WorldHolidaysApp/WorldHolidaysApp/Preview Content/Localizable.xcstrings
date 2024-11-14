@@ -61,16 +61,10 @@
     "Filters" : {
 
     },
-    "Hello, World!" : {
-
-    },
     "Holiday Calendar" : {
 
     },
     "Holiday Type" : {
-
-    },
-    "Holidays List" : {
 
     },
     "It's a holiday today: %@" : {
@@ -88,13 +82,13 @@
     "No holidays found for this year." : {
 
     },
+    "No Image Available" : {
+
+    },
     "Select Country" : {
 
     },
     "Select Date" : {
-
-    },
-    "Select Language" : {
 
     },
     "Select Type" : {

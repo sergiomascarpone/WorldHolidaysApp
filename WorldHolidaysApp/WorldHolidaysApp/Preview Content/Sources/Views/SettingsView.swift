@@ -8,22 +8,43 @@
 import SwiftUI
 
 struct SettingsView: View {
-    @State private var selectedLanguage = Locale.current.language.languageCode?.identifier ?? "en"
-    let languages = ["en": "English", "ru": "Russian", "fr": "French", "de": "German", "es": "Spanish", "it": "Italian", "pl": "Polish", "sr": "Serbian"]
+    @State private var selectedLanguage: String = LocalizationManager.shared.currentLanguage
+    
+    var languages = [
+        ("en", "English"),
+        ("ru", "Русский"),
+        ("fr", "Français"),
+        ("de", "Deutsch"),
+        ("es", "Español"),
+        ("it", "Italiano"),
+        ("pl", "Polski"),
+        ("sr", "Српски")
+    ]
 
     var body: some View {
         Form {
-            Section(header: Text("Language")) {
-                Picker("Select Language", selection: $selectedLanguage) {
-                    ForEach(languages.keys.sorted(), id: \.self) { key in
-                        Text(languages[key] ?? key).tag(key)
+            Section(header: Text(LocalizationManager.shared.localizedString(forKey: "Select Language"))) {
+                Picker("Language", selection: $selectedLanguage) {
+                    ForEach(languages, id: \.0) { code, name in
+                        Text(name).tag(code)
                     }
+                }
+                .onChange(of: selectedLanguage) { newLanguage in
+                    LocalizationManager.shared.setLanguage(newLanguage)
+                }
+                .onReceive(NotificationCenter.default.publisher(for: .languageDidChange)) { _ in
+                    UIApplication.shared.windows.first?.rootViewController =
+                    UIHostingController(rootView: HolidaysListView())
                 }
             }
         }
-        .navigationTitle("Settings")
+        .navigationTitle(LocalizationManager.shared.localizedString(forKey: "Settings"))
+        .onAppear {
+            selectedLanguage = LocalizationManager.shared.currentLanguage
+        }
     }
 }
+
 
 
 

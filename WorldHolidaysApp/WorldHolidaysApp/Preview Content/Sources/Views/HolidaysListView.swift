@@ -21,13 +21,19 @@ struct HolidaysListView: View {
                     Text("No holidays found for this year.")
                 } else {
                     ForEach(holidays) { holiday in
-                        VStack(alignment: .leading) {
-                            Text(holiday.name)
-                                .font(.headline)
-                            // Используем правильный формат для даты праздника
-                            Text(holiday.date, style: .date)
-                                .font(.subheadline)
-                                .foregroundColor(.gray)
+                        HStack {
+                            Image(holiday.imageName)
+                                .resizable()
+                                .frame(width: 40, height: 40)
+                                .clipShape(Circle())
+                                .padding(.trailing, 10)
+                            VStack(alignment: .leading) {
+                                Text(holiday.name)
+                                    .font(.headline)
+                                Text(holiday.date.formatted(date: .long, time: .omitted))
+                                    .font(.subheadline)
+                                    .foregroundColor(.gray)
+                            }
                         }
                     }
                 }
@@ -48,7 +54,6 @@ struct HolidaysListView: View {
         print("Всего праздников загружено: \(holidays.count)")
     }
 }
-
 
 #Preview {
     HolidaysListView()

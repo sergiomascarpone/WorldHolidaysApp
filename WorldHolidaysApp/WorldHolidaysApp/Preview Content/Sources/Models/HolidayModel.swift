@@ -15,6 +15,21 @@ struct Holiday: Identifiable {
     var countryCode: String
 }
 
+extension Holiday {
+    var imageName: String {
+        switch name.lowercased() {
+        case "new year's day":
+            return "new_year"
+        case "christmas":
+            return "christmas_tree"
+        case "independence day":
+            return "independence_day"
+        default:
+            return "default_holiday"
+        }
+    }
+}
+
 
 //// Пример сервиса для загрузки данных (пока заглушка)
 //class HolidayService {

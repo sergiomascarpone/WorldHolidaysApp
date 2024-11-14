@@ -24,7 +24,7 @@ struct HolidaysListView: View {
                         HStack {
                             Image(holiday.imageName)
                                 .resizable()
-                                .frame(width: 40, height: 40)
+                                .frame(width: 60, height: 60)
                                 .clipShape(Circle())
                                 .padding(.trailing, 10)
                             VStack(alignment: .leading) {

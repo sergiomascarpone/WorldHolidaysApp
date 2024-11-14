@@ -20,24 +20,22 @@ extension Holiday {
         switch name.lowercased() {
         case "new year's day":
             return "new_year"
-        case "christmas":
-            return "christmas_tree"
-        case "independence day":
-            return "independence_day"
+        case "new year holiday":
+            return "new_year_holiday"
+        case "orthodox christmas day":
+            return "orthodox_christmas_day"
+        case "valentine's day":
+            return "valentines_day"
+        case "defender of the fatherland day":
+            return "defender_of_the_fatherland_day"
+        case "women's day":
+            return "women's_day"
+        case "catholic christmas day":
+            return "catholic_christmas_day"
+        case "new year's eve":
+            return "new_year's_eve"
         default:
             return "default_holiday"
         }
     }
 }
-
-
-//// Пример сервиса для загрузки данных (пока заглушка)
-//class HolidayService {
-//    // Заглушка данных
-//    static func fetchHolidays(for year: Int) async -> [Holiday] {
-//        return [
-//            Holiday(id: UUID(), name: "New Year", date: Date(), description: "Celebration of the new year", countryCode: "US"),
-//            Holiday(id: UUID(), name: "Christmas", date: Date(), description: "Christmas holiday", countryCode: "DE")
-//        ]
-//    }
-//}

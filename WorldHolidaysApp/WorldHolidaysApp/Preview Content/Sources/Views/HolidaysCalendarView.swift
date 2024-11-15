@@ -46,26 +46,24 @@ struct HolidaysCalendarView: View {
     private func loadHolidays() async {
         let year = Calendar.current.component(.year, from: Date())
         let countryCode = Locale.current.region?.identifier ?? "US"
-        
+
         isLoading = true
         holidays = await service.fetchHolidays(for: year, country: countryCode)
         isLoading = false
-        
-        // Определяем сегодняшнюю дату без времени
+
         let calendar = Calendar.current
         let today = calendar.startOfDay(for: Date())
-        
-        // Находим праздник, который совпадает с сегодняшней датой
+
         todayHoliday = holidays.first { holiday in
             let holidayDate = calendar.startOfDay(for: holiday.date)
             return holidayDate == today
         }
-        
-        // Отладочная печать
+
+        // Отправляем уведомление о сегодняшнем празднике
         if let holiday = todayHoliday {
-            print("It's a holiday today: \(holiday.name), Дата: \(holiday.date)")
+            NotificationManager.shared.scheduleTodayHolidayNotification(for: holiday)
         } else {
-            print("There's no holidays today.")
+            NotificationManager.shared.cancelAllNotifications()
         }
     }
 }

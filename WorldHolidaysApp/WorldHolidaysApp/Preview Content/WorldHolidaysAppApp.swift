@@ -9,6 +9,11 @@ import SwiftUI
 
 @main
 struct WorldHolidaysApp: App {
+    
+    init() {
+            NotificationManager.shared.requestAuthorization()
+        }
+    
     var body: some Scene {
         WindowGroup {
             MainTabView()

@@ -2,6 +2,13 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSUserTrackingUsageDescription</key>
+	<string>Мы используем уведомления, чтобы напомнить вам о сегодняшних праздниках</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>fetch</string>
+		<string>remote-notification</string>
+	</array>
 	<key>HOLIDAYS_API_KEY</key>
 	<string>5nasPfsVm6zw6w0qRvE6J3KHIt0RyPkR</string>
 </dict>

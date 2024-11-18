@@ -18,55 +18,35 @@ struct HolidaysCalendarView: View {
 
     var body: some View {
         NavigationView {
-            ZStack {
-//                // Фоновый блюр
-//                VisualEffectBlur(blurStyle: .systemMaterial)
-//                    .ignoresSafeArea()
-
-                VStack {
-                    if isLoading {
-                        ProgressView("Loading holidays...")
-                    } else {
-                        DatePicker("Select Date", selection: $selectedDate, displayedComponents: [.date])
-                            .datePickerStyle(GraphicalDatePickerStyle())
-                            .padding()
-                        
-                        if let holiday = todayHoliday {
-                            VStack {
-                                Text("🎉 \(holiday.name) 🎉")
-                                    .font(.headline)
-                                    .padding()
-                                
-                                Button("Show Fun Fact") {
-                                    withAnimation {
-                                        showConfetti.toggle()
-                                    }
-                                }
-                                .padding()
-                                .buttonStyle(.borderedProminent)
-                                
-                                if showConfetti {
-                                    Text(holiday.fact)
-                                        .font(.body)
-                                        .padding()
-                                        .transition(.scale)
-                                    
-                                    ConfettiView()
-                                        .frame(maxWidth: .infinity, maxHeight: .infinity)
-                                }
-                            }
-                        } else {
-                            Text("There's no holidays today.")
-                                .font(.headline)
-                                .padding()
+            VStack {
+                // Индикатор загрузки данных
+                if isLoading {
+                    ProgressView("Loading holidays...")
+                        .progressViewStyle(CircularProgressViewStyle())
+                        .padding()
+                } else {
+                    DatePicker("Select Date", selection: $selectedDate, displayedComponents: [.date])
+                        .datePickerStyle(GraphicalDatePickerStyle())
+                        .padding()
+                        .onChange(of: selectedDate) { _ in
+                            updateTodayHoliday()
                         }
+                    
+                    // Отображение информации о празднике
+                    if let holiday = todayHoliday {
+                        HolidayDetailsView(holiday: holiday, showConfetti: $showConfetti)
+                    } else {
+                        Text("There's no holidays today.")
+                            .font(.headline)
+                            .padding()
                     }
                 }
-                .navigationTitle("Holiday Calendar")
-                .task {
-                    await loadHolidays()
-                }
             }
+            .navigationTitle("Holidays Calendar")
+            .task {
+                await loadHolidays()
+            }
+            .padding()
         }
     }
 
@@ -77,9 +57,12 @@ struct HolidaysCalendarView: View {
         isLoading = true
         holidays = await service.fetchHolidays(for: year, country: countryCode)
         isLoading = false
-        
+        updateTodayHoliday()
+    }
+
+    private func updateTodayHoliday() {
         let calendar = Calendar.current
-        let today = calendar.startOfDay(for: Date())
+        let today = calendar.startOfDay(for: selectedDate)
         
         todayHoliday = holidays.first { holiday in
             let holidayDate = calendar.startOfDay(for: holiday.date)
@@ -87,3 +70,37 @@ struct HolidaysCalendarView: View {
         }
     }
 }
+
+struct HolidayDetailsView: View {
+    let holiday: Holiday
+    @Binding var showConfetti: Bool
+
+    var body: some View {
+        VStack {
+            Text("🎉 \(holiday.name) 🎉")
+                .font(.headline)
+                .padding()
+            
+            Button("Show Fun Fact") {
+                withAnimation {
+                    showConfetti.toggle()
+                }
+            }
+            .padding()
+            .buttonStyle(.borderedProminent)
+
+            if showConfetti {
+                Text(holiday.fact)
+                    .font(.body)
+                    .padding()
+                    .transition(.scale)
+
+                ConfettiView()
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+            }
+        }
+        .animation(.easeInOut, value: showConfetti)
+        .padding()
+    }
+}
+

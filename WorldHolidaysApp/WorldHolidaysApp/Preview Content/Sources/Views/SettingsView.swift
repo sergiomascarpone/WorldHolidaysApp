@@ -9,9 +9,15 @@ import SwiftUI
 
 struct SettingsView: View {
     @State private var selectedLanguage: String = LocalizationManager.shared.currentLanguage
-    @State private var isNotificationsEnabled: Bool = UserDefaults.standard.bool(forKey: "isNotificationsEnabled")
+    @AppStorage("isNotificationsEnabled") private var isNotificationsEnabled: Bool = false
     
-    var languages = [
+    // Кэширование локализованных строк
+    private let languageSectionTitle = LocalizationManager.shared.localizedString(forKey: "Select Language")
+    private let notificationsSectionTitle = LocalizationManager.shared.localizedString(forKey: "Notifications")
+    private let enableNotificationsText = LocalizationManager.shared.localizedString(forKey: "Enable Holiday Notifications")
+
+    // Поддерживаемые языки
+    private let languages = [
         ("en", "English"),
         ("ru", "Русский"),
         ("fr", "Français"),
@@ -24,7 +30,8 @@ struct SettingsView: View {
     
     var body: some View {
         Form {
-            Section(header: Text(LocalizationManager.shared.localizedString(forKey: "Select Language"))) {
+            // Секция выбора языка
+            Section(header: Text(languageSectionTitle)) {
                 Picker("Language", selection: $selectedLanguage) {
                     ForEach(languages, id: \.0) { code, name in
                         Text(name).tag(code)
@@ -35,25 +42,12 @@ struct SettingsView: View {
                 }
             }
             
-            // Секция для уведомлений
-            Section(header: Text(LocalizationManager.shared.localizedString(forKey: "Notifications"))) {
-                Toggle(
-                    LocalizationManager.shared.localizedString(forKey: "Enable Holiday Notifications"),
-                    isOn: $isNotificationsEnabled
-                )
-                .onChange(of: isNotificationsEnabled) { newValue in
-                    UserDefaults.standard.set(newValue, forKey: "isNotificationsEnabled")
-                    
-                    if newValue {
-                        // Если уведомления включены, запланировать уведомление
-                        Task {
-                            await scheduleTodayNotificationIfNeeded()
-                        }
-                    } else {
-                        // Если уведомления выключены, отменить все запланированные уведомления
-                        NotificationManager.shared.cancelAllNotifications()
+            // Секция уведомлений
+            Section(header: Text(notificationsSectionTitle)) {
+                Toggle(enableNotificationsText, isOn: $isNotificationsEnabled)
+                    .onChange(of: isNotificationsEnabled) { isEnabled in
+                        handleNotificationToggle(isEnabled: isEnabled)
                     }
-                }
             }
         }
         .navigationTitle(LocalizationManager.shared.localizedString(forKey: "Settings"))
@@ -62,24 +56,32 @@ struct SettingsView: View {
         }
     }
 
-    // Вынесли функцию за пределы body, но оставили внутри структуры
-    func scheduleTodayNotificationIfNeeded() async {
-        let holidaysService = HolidaysService()
+    // Обработчик изменения состояния уведомлений
+    private func handleNotificationToggle(isEnabled: Bool) {
+        if isEnabled {
+            Task {
+                await scheduleTodayNotificationIfNeeded()
+            }
+        } else {
+            NotificationManager.shared.cancelAllNotifications()
+        }
+    }
+
+    // Планирование уведомлений на текущий день
+    private func scheduleTodayNotificationIfNeeded() async {
         let year = Calendar.current.component(.year, from: Date())
         let countryCode = Locale.current.region?.identifier ?? "US"
-        
+
+        let holidaysService = HolidaysService()
         let holidays = await holidaysService.fetchHolidays(for: year, country: countryCode)
-        let calendar = Calendar.current
-        let today = calendar.startOfDay(for: Date())
-        
-        if let todayHoliday = holidays.first(where: { holiday in
-            let holidayDate = calendar.startOfDay(for: holiday.date)
-            return holidayDate == today
-        }) {
+
+        // Определяем, есть ли сегодня праздник
+        if let todayHoliday = holidays.first(where: { Calendar.current.isDateInToday($0.date) }) {
             NotificationManager.shared.scheduleTodayHolidayNotification(for: todayHoliday)
         }
     }
 }
+
 
 
 

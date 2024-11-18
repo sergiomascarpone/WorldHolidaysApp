@@ -25,7 +25,7 @@ struct HolidayDetailView: View {
                     .frame(height: 300)
                     .cornerRadius(12)
 
-                Text(holiday.description)
+                Text(holiday.description!)
                     .font(.body)
                     .padding(.horizontal)
                     .lineLimit(nil) // Разрешаем многострочный текст

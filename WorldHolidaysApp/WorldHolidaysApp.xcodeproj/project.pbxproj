@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXContainerItemProxy section */
+		1B09F6112CEB55290087B924 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1BD944A72CE359FE00E8D813 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1B09F5F42CEB52600087B924;
+			remoteInfo = HolidayWidgetExtension;
+		};
 		1BD944C02CE35A0100E8D813 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 1BD944A72CE359FE00E8D813 /* Project object */;
@@ -23,7 +30,22 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		1B09F60C2CEB52620087B924 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		1B09F5F72CEB52600087B924 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		1B09F5F92CEB52600087B924 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		1BD944AF2CE359FF00E8D813 /* WorldHolidaysApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WorldHolidaysApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BD944BF2CE35A0100E8D813 /* WorldHolidaysAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WorldHolidaysAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BD944C92CE35A0100E8D813 /* WorldHolidaysAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WorldHolidaysAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -85,12 +107,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1B09F5F62CEB52600087B924 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1B09F5F72CEB52600087B924 /* WidgetKit.framework */,
+				1B09F5F92CEB52600087B924 /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		1BD944A62CE359FE00E8D813 = {
 			isa = PBXGroup;
 			children = (
 				1BD944B12CE359FF00E8D813 /* WorldHolidaysApp */,
 				1BD944C22CE35A0100E8D813 /* WorldHolidaysAppTests */,
 				1BD944CC2CE35A0100E8D813 /* WorldHolidaysAppUITests */,
+				1B09F5F62CEB52600087B924 /* Frameworks */,
 				1BD944B02CE359FF00E8D813 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -115,10 +147,12 @@
 				1BD944AB2CE359FF00E8D813 /* Sources */,
 				1BD944AC2CE359FF00E8D813 /* Frameworks */,
 				1BD944AD2CE359FF00E8D813 /* Resources */,
+				1B09F60C2CEB52620087B924 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				1B09F6122CEB55290087B924 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				1BD944B12CE359FF00E8D813 /* WorldHolidaysApp */,
@@ -279,6 +313,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		1B09F6122CEB55290087B924 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			targetProxy = 1B09F6112CEB55290087B924 /* PBXContainerItemProxy */;
+		};
 		1BD944C12CE35A0100E8D813 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 1BD944AE2CE359FF00E8D813 /* WorldHolidaysApp */;

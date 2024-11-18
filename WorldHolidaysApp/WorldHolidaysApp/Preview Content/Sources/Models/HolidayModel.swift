@@ -7,13 +7,15 @@
 
 import Foundation
 
-struct Holiday: Identifiable {
-    var id: UUID
-    var name: String
-    var date: Date
-    var description: String
-    var countryCode: String
+struct Holiday: Codable, Identifiable {
+    let id: UUID
+    let name: String
+    let date: Date
+    let description: String?
+    let countryCode: String
+    let fact: String
 }
+
 
 extension Holiday {
     var imageName: String {

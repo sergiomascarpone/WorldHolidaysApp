@@ -49,6 +49,9 @@
         }
       }
     },
+    "🎉 %@ 🎉" : {
+
+    },
     "Calendar" : {
 
     },
@@ -65,9 +68,6 @@
 
     },
     "Holiday Type" : {
-
-    },
-    "It's a holiday today: %@" : {
 
     },
     "Language" : {
@@ -95,6 +95,9 @@
 
     },
     "Settings" : {
+
+    },
+    "Show Fun Fact" : {
 
     },
     "There's no holidays today." : {

@@ -13,7 +13,7 @@ class LocalizationManager {
     
     var currentLanguage: String {
         get {
-            UserDefaults.standard.string(forKey: "selectedLanguage") ?? Locale.current.languageCode ?? "en"
+            UserDefaults.standard.string(forKey: "selectedLanguage") ?? Locale.current.language.languageCode?.identifier ?? "en"
         }
         set {
             UserDefaults.standard.setValue(newValue, forKey: "selectedLanguage")

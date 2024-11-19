@@ -93,6 +93,6 @@ struct HolidayImage: View {
     }
 }
 
-#Preview {
-    HolidaysListView()
-}
+//#Preview {
+//    HolidaysListView()
+//}

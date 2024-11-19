@@ -13,9 +13,9 @@ struct HolidaysCalendarView: View {
     @State private var todayHoliday: Holiday?
     @State private var isLoading = true
     @State private var showConfetti = false
-
+    
     let service = HolidaysService()
-
+    
     var body: some View {
         NavigationView {
             VStack {
@@ -49,7 +49,7 @@ struct HolidaysCalendarView: View {
             .padding()
         }
     }
-
+    
     private func loadHolidays() async {
         let year = Calendar.current.component(.year, from: Date())
         let countryCode = Locale.current.region?.identifier ?? "US"
@@ -59,7 +59,7 @@ struct HolidaysCalendarView: View {
         isLoading = false
         updateTodayHoliday()
     }
-
+    
     private func updateTodayHoliday() {
         let calendar = Calendar.current
         let today = calendar.startOfDay(for: selectedDate)
@@ -74,7 +74,7 @@ struct HolidaysCalendarView: View {
 struct HolidayDetailsView: View {
     let holiday: Holiday
     @Binding var showConfetti: Bool
-
+    
     var body: some View {
         VStack {
             Text("🎉 \(holiday.name) 🎉")
@@ -88,13 +88,13 @@ struct HolidayDetailsView: View {
             }
             .padding()
             .buttonStyle(.borderedProminent)
-
+            
             if showConfetti {
                 Text(holiday.fact)
                     .font(.body)
                     .padding()
                     .transition(.scale)
-
+                
                 ConfettiView()
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
             }

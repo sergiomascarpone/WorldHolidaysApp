@@ -9,7 +9,7 @@ import Foundation
 
 class HolidaysService {
     private let apiKey = Bundle.main.object(forInfoDictionaryKey: "HOLIDAYS_API_KEY") as? String ?? ""
-
+    
     // Примеры интересных фактов о праздниках
     private let holidayFacts: [String] = [
         "Did you know? New Year's Day is the oldest of all holidays, being first observed in ancient Babylon about 4,000 years ago.",
@@ -20,13 +20,13 @@ class HolidaysService {
     ]
     
     func fetchHolidays(for year: Int, country: String) async -> [Holiday] {
-            guard let url = URL(string: "https://calendarific.com/api/v2/holidays?api_key=\(apiKey)&country=\(country)&year=\(year)") else {
-                print("Ошибка формирования URL")
-                return [
-                    Holiday(id: UUID(), name: "New Year's Day", date: Date(), description: "A global celebration for the start of the new year.", countryCode: country, fact: getRandomFact()),
-                    Holiday(id: UUID(), name: "Christmas", date: Calendar.current.date(from: DateComponents(year: year, month: 12, day: 25))!, description: "A Christian holiday that celebrates the birth of Jesus Christ.", countryCode: country, fact: getRandomFact())
-                ]
-            }
+        guard let url = URL(string: "https://calendarific.com/api/v2/holidays?api_key=\(apiKey)&country=\(country)&year=\(year)") else {
+            print("Ошибка формирования URL")
+            return [
+                Holiday(id: UUID(), name: "New Year's Day", date: Date(), description: "A global celebration for the start of the new year.", countryCode: country, fact: getRandomFact()),
+                Holiday(id: UUID(), name: "Christmas", date: Calendar.current.date(from: DateComponents(year: year, month: 12, day: 25))!, description: "A Christian holiday that celebrates the birth of Jesus Christ.", countryCode: country, fact: getRandomFact())
+            ]
+        }
         do {
             let (data, _) = try await URLSession.shared.data(from: url)
             
@@ -34,7 +34,7 @@ class HolidaysService {
             if let jsonString = String(data: data, encoding: .utf8) {
                 print("JSON Response: \(jsonString)")
             }
-
+            
             // Декодирование с учетом правильной модели
             let response = try JSONDecoder().decode(CalendarificResponse.self, from: data)
             if response.meta.code == 200 {
@@ -66,7 +66,7 @@ class HolidaysService {
         let components = DateComponents(year: dateDetails.year, month: dateDetails.month, day: dateDetails.day)
         return calendar.date(from: components) ?? Date()
     }
-
+    
     // Функция для получения случайного факта
     private func getRandomFact() -> String {
         return holidayFacts.randomElement() ?? "Enjoy your holiday!"

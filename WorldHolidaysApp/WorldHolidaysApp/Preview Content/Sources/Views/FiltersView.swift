@@ -11,9 +11,9 @@ struct FiltersView: View {
     @State private var selectedCountry = Locale.current.region?.identifier ?? "US"
     @State private var holidayTypes = ["All", "National", "Religious", "Seasonal"]
     @State private var selectedType = "All"
-
+    
     let countries = ["US": "United States", "DE": "Germany", "FR": "France", "RU": "Russia", "BY:": "Belarus"]
-
+    
     var body: some View {
         Form {
             Section(header: Text("Country")) {

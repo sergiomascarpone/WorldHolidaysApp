@@ -21,7 +21,7 @@ struct MainTabView: View {
                     Image(systemName: "calendar")
                     Text("Calendar")
                 }
-
+            
             SettingsView()
                 .tabItem {
                     Image(systemName: "gear")

@@ -11,8 +11,8 @@ import SwiftUI
 struct WorldHolidaysApp: App {
     
     init() {
-            NotificationManager.shared.requestAuthorization()
-        }
+        NotificationManager.shared.requestAuthorization()
+    }
     
     var body: some Scene {
         WindowGroup {

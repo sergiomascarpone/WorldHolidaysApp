@@ -9,7 +9,7 @@ import SwiftUI
 
 struct HolidayDetailView: View {
     var holiday: Holiday
-
+    
     var body: some View {
         ScrollView {
             VStack(spacing: 16) {
@@ -24,7 +24,7 @@ struct HolidayDetailView: View {
                     .scaledToFit()
                     .frame(height: 300)
                     .cornerRadius(12)
-
+                
                 Text(holiday.description!)
                     .font(.body)
                     .padding(.horizontal)

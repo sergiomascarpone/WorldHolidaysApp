@@ -37,6 +37,6 @@ struct ConfettiView: View {
     }
 }
 
-#Preview {
-    ConfettiView()
-}
+//#Preview {
+//    ConfettiView()
+//}

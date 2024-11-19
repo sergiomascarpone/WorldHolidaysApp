@@ -15,7 +15,7 @@ struct SettingsView: View {
     private let languageSectionTitle = LocalizationManager.shared.localizedString(forKey: "Select Language")
     private let notificationsSectionTitle = LocalizationManager.shared.localizedString(forKey: "Notifications")
     private let enableNotificationsText = LocalizationManager.shared.localizedString(forKey: "Enable Holiday Notifications")
-
+    
     // Поддерживаемые языки
     private let languages = [
         ("en", "English"),
@@ -30,6 +30,7 @@ struct SettingsView: View {
     
     var body: some View {
         Form {
+            
             // Секция выбора языка
             Section(header: Text(languageSectionTitle)) {
                 Picker("Language", selection: $selectedLanguage) {
@@ -55,7 +56,7 @@ struct SettingsView: View {
             selectedLanguage = LocalizationManager.shared.currentLanguage
         }
     }
-
+    
     // Обработчик изменения состояния уведомлений
     private func handleNotificationToggle(isEnabled: Bool) {
         if isEnabled {
@@ -66,29 +67,21 @@ struct SettingsView: View {
             NotificationManager.shared.cancelAllNotifications()
         }
     }
-
+    
     // Планирование уведомлений на текущий день
     private func scheduleTodayNotificationIfNeeded() async {
         let year = Calendar.current.component(.year, from: Date())
         let countryCode = Locale.current.region?.identifier ?? "US"
-
+        
         let holidaysService = HolidaysService()
         let holidays = await holidaysService.fetchHolidays(for: year, country: countryCode)
-
+        
         // Определяем, есть ли сегодня праздник
         if let todayHoliday = holidays.first(where: { Calendar.current.isDateInToday($0.date) }) {
             NotificationManager.shared.scheduleTodayHolidayNotification(for: todayHoliday)
         }
     }
 }
-
-
-
-
-
-//#Preview {
-//    SettingsView()
-//}
 
 //приложение уникальным и интересным:
 //

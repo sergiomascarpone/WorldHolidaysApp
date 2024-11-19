@@ -28,7 +28,7 @@ class LocalizationManager {
         }
         return NSLocalizedString(key, tableName: nil, bundle: bundle, value: "", comment: "")
     }
-
+    
     func setLanguage(_ language: String) {
         currentLanguage = language
         NotificationCenter.default.post(name: .languageDidChange, object: nil)

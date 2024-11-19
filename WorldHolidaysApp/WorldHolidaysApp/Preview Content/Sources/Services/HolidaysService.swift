@@ -9,6 +9,8 @@ import Foundation
 
 class HolidaysService {
     private let apiKey = Bundle.main.object(forInfoDictionaryKey: "HOLIDAYS_API_KEY") as? String ?? ""
+    private let cacheManager = LocalCacheManager()
+
     
     // Примеры интересных фактов о праздниках
     private let holidayFacts: [String] = [
@@ -20,13 +22,24 @@ class HolidaysService {
     ]
     
     func fetchHolidays(for year: Int, country: String) async -> [Holiday] {
-        guard let url = URL(string: "https://calendarific.com/api/v2/holidays?api_key=\(apiKey)&country=\(country)&year=\(year)") else {
+        guard URL(string: "https://calendarific.com/api/v2/holidays?api_key=\(apiKey)&country=\(country)&year=\(year)") != nil else {
             print("Ошибка формирования URL")
             return [
                 Holiday(id: UUID(), name: "New Year's Day", date: Date(), description: "A global celebration for the start of the new year.", countryCode: country, fact: getRandomFact()),
                 Holiday(id: UUID(), name: "Christmas", date: Calendar.current.date(from: DateComponents(year: year, month: 12, day: 25))!, description: "A Christian holiday that celebrates the birth of Jesus Christ.", countryCode: country, fact: getRandomFact())
             ]
         }
+        let cachedHolidays = cacheManager.loadHolidays()
+               if !cachedHolidays.isEmpty {
+                   print("Используем кэшированные данные")
+                   return cachedHolidays
+               }
+        // Если кэш пуст, загрузить данные с сервера
+        guard let url = URL(string: "https://calendarific.com/api/v2/holidays?api_key=\(apiKey)&country=\(country)&year=\(year)") else {
+            print("Ошибка формирования URL")
+            return []
+        }
+
         do {
             let (data, _) = try await URLSession.shared.data(from: url)
             
@@ -49,6 +62,8 @@ class HolidaysService {
                     )
                 }
                 print("Загружено праздников: \(holidays.count)")
+                // Сохранить загруженные данные в кэш
+                              cacheManager.saveHolidays(holidays)
                 return holidays
             } else {
                 print("Ошибка в ответе от API: \(response.meta.code)")

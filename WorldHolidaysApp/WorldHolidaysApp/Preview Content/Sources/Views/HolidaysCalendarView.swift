@@ -50,14 +50,20 @@ struct HolidaysCalendarView: View {
         }
     }
     
-    private func loadHolidays() async {
-        let year = Calendar.current.component(.year, from: Date())
-        let countryCode = Locale.current.region?.identifier ?? "US"
-        
-        isLoading = true
-        holidays = await service.fetchHolidays(for: year, country: countryCode)
-        isLoading = false
-        updateTodayHoliday()
+    func loadHolidays() async {
+            let year = Calendar.current.component(.year, from: Date())
+            let countryCode = Locale.current.region?.identifier ?? "US"
+            isLoading = true
+            holidays = await service.fetchHolidays(for: year, country: countryCode)
+            isLoading = false
+
+            let calendar = Calendar.current
+            let today = calendar.startOfDay(for: Date())
+            
+            todayHoliday = holidays.first { holiday in
+                let holidayDate = calendar.startOfDay(for: holiday.date)
+                return holidayDate == today
+            }
     }
     
     private func updateTodayHoliday() {

@@ -19,7 +19,7 @@ struct HolidaysListView: View {
                     ProgressView("Loading holidays...")
                 } else {
                     ScrollView {
-                        LazyVStack(spacing: 12) { // LazyVStack заменяет многослойные List
+                        LazyVStack(spacing: 10) { // LazyVStack заменяет многослойные List
                             ForEach(holidays) { holiday in
                                 HolidayRow(holiday: holiday)
                                     .padding(.horizontal)
@@ -45,7 +45,6 @@ struct HolidaysListView: View {
         print("Всего праздников загружено: \(holidays.count)")
     }
 }
-
 
 //#Preview {
 //    HolidaysListView()

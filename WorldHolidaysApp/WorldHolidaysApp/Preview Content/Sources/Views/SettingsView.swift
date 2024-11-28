@@ -16,7 +16,7 @@ struct SettingsView: View {
     private let notificationsSectionTitle = LocalizationManager.shared.localizedString(forKey: "Notifications")
     private let enableNotificationsText = LocalizationManager.shared.localizedString(forKey: "Enable Holiday Notifications")
     
-    // Поддерживаемые языки
+    // Поддерживаемые языки (довести до ума и чтобы работало!)
     private let languages = [
         ("en", "English"),
         ("ru", "Русский"),

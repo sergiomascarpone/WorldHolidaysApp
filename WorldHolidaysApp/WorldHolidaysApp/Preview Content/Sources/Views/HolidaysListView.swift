@@ -45,7 +45,3 @@ struct HolidaysListView: View {
         print("Всего праздников загружено: \(holidays.count)")
     }
 }
-
-//#Preview {
-//    HolidaysListView()
-//}

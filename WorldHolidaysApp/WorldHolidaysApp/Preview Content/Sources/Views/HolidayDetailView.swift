@@ -37,5 +37,3 @@ struct HolidayDetailView: View {
         }
     }
 }
-
-

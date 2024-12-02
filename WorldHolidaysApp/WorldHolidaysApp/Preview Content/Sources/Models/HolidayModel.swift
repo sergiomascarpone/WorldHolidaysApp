@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import MapKit
 
 struct Holiday: Codable, Identifiable {
     let id: UUID
@@ -15,7 +16,6 @@ struct Holiday: Codable, Identifiable {
     let countryCode: String
     let fact: String
 }
-
 
 extension Holiday {
     var imageName: String {

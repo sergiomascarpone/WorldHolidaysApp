@@ -9,79 +9,22 @@ import SwiftUI
 
 struct SettingsView: View {
     @State private var selectedLanguage: String = LocalizationManager.shared.currentLanguage
-    @AppStorage("isNotificationsEnabled") private var isNotificationsEnabled: Bool = false
-    
-    // Кэширование локализованных строк
-    private let languageSectionTitle = LocalizationManager.shared.localizedString(forKey: "Select Language")
-    private let notificationsSectionTitle = LocalizationManager.shared.localizedString(forKey: "Notifications")
-    private let enableNotificationsText = LocalizationManager.shared.localizedString(forKey: "Enable Holiday Notifications")
-    
-    // Поддерживаемые языки (довести до ума и чтобы работало!)
-    private let languages = [
-        ("en", "English"),
-        ("ru", "Русский"),
-        ("fr", "Français"),
-        ("de", "Deutsch"),
-        ("es", "Español"),
-        ("it", "Italiano"),
-        ("pl", "Polski"),
-        ("sr", "Српски")
-    ]
-    
+    @State private var isNotificationsEnabled: Bool = UserDefaults.standard.bool(forKey: "isNotificationsEnabled")
+
     var body: some View {
-        Form {
-            
-            // Секция выбора языка
-            Section(header: Text(languageSectionTitle)) {
-                Picker("Language", selection: $selectedLanguage) {
-                    ForEach(languages, id: \.0) { code, name in
-                        Text(name).tag(code)
-                    }
-                }
-                .onChange(of: selectedLanguage) { newLanguage in
-                    LocalizationManager.shared.setLanguage(newLanguage)
-                }
+        NavigationView {
+            Form {
+                LanguageSelectionSection(selectedLanguage: $selectedLanguage)
+                NotificationSettingsSection(isNotificationsEnabled: $isNotificationsEnabled)
             }
-            
-            // Секция уведомлений
-            Section(header: Text(notificationsSectionTitle)) {
-                Toggle(enableNotificationsText, isOn: $isNotificationsEnabled)
-                    .onChange(of: isNotificationsEnabled) { isEnabled in
-                        handleNotificationToggle(isEnabled: isEnabled)
-                    }
+            .navigationTitle(LocalizationManager.shared.localizedString(forKey: "Settings"))
+            .onAppear {
+                selectedLanguage = LocalizationManager.shared.currentLanguage
             }
-        }
-        .navigationTitle(LocalizationManager.shared.localizedString(forKey: "Settings"))
-        .onAppear {
-            selectedLanguage = LocalizationManager.shared.currentLanguage
-        }
-    }
-    
-    // Обработчик изменения состояния уведомлений
-    private func handleNotificationToggle(isEnabled: Bool) {
-        if isEnabled {
-            Task {
-                await scheduleTodayNotificationIfNeeded()
-            }
-        } else {
-            NotificationManager.shared.cancelAllNotifications()
-        }
-    }
-    
-    // Планирование уведомлений на текущий день
-    private func scheduleTodayNotificationIfNeeded() async {
-        let year = Calendar.current.component(.year, from: Date())
-        let countryCode = Locale.current.region?.identifier ?? "US"
-        
-        let holidaysService = HolidaysService()
-        let holidays = await holidaysService.fetchHolidays(for: year, country: countryCode)
-        
-        // Определяем, есть ли сегодня праздник
-        if let todayHoliday = holidays.first(where: { Calendar.current.isDateInToday($0.date) }) {
-            NotificationManager.shared.scheduleTodayHolidayNotification(for: todayHoliday)
         }
     }
 }
+
 
 
 //задачи для того, чтобы сделать приложение уникальным и интересным:

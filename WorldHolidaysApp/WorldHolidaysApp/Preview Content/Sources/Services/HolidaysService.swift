@@ -15,6 +15,7 @@ class HolidaysService {
     // Примеры интересных фактов о праздниках
     private let holidayFacts: [String] = [
         "Did you know? New Year's Day is the oldest of all holidays, being first observed in ancient Babylon about 4,000 years ago.",
+        "Catholic Christmas Day is celebrated by over 2 billion people every year, across 160 countries.",
         "Christmas is celebrated by over 2 billion people every year, across 160 countries.",
         "The first Thanksgiving was celebrated in 1621 over a three-day harvest festival.",
         "Halloween is the second highest-grossing commercial holiday after Christmas.",
@@ -26,7 +27,7 @@ class HolidaysService {
             print("Ошибка формирования URL")
             return [
                 Holiday(id: UUID(), name: "New Year's Day", date: Date(), description: "A global celebration for the start of the new year.", countryCode: country, fact: getRandomFact()),
-                Holiday(id: UUID(), name: "Christmas", date: Calendar.current.date(from: DateComponents(year: year, month: 12, day: 25))!, description: "A Christian holiday that celebrates the birth of Jesus Christ.", countryCode: country, fact: getRandomFact())
+                Holiday(id: UUID(), name: "Catholic Christmas Day", date: Calendar.current.date(from: DateComponents(year: year, month: 12, day: 25))!, description: "A Christian holiday that celebrates the birth of Jesus Christ.", countryCode: country, fact: getRandomFact())
             ]
         }
         let cachedHolidays = cacheManager.loadHolidays()

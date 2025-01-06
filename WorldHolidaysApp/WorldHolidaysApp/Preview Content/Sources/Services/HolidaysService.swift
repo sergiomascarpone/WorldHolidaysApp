@@ -11,7 +11,6 @@ class HolidaysService {
     private let apiKey = Bundle.main.object(forInfoDictionaryKey: "HOLIDAYS_API_KEY") as? String ?? ""
     private let cacheManager = LocalCacheManager()
 
-    
     // Примеры интересных фактов о праздниках
     private let holidayFacts: [String] = [
         "Did you know? New Year's Day is the oldest of all holidays, being first observed in ancient Babylon about 4,000 years ago.",

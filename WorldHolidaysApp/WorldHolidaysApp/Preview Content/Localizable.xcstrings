@@ -1,62 +1,54 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "«Christmas»" : {
-      "comment" : "\"Christmas\"",
+    "🎉 %@ 🎉" : {
+
+    },
+    "Calendar" : {
+      "comment" : "Calendar",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Календарь"
+          }
+        }
+      }
+    },
+    "Catholic Christmas Day" : {
+      "comment" : "\"Catholic Christmas Day\"",
       "extractionState" : "manual",
       "localizations" : {
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "«Рождество»"
+            "value" : "Католическое Рождество"
           }
         }
       }
     },
-    "«Details»" : {
+    "Country" : {
+      "comment" : "\"Country\"",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Страна"
+          }
+        }
+      }
+    },
+    "Details" : {
       "comment" : "\"Details\"",
       "extractionState" : "manual",
       "localizations" : {
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "«Детали»"
+            "value" : "Детали"
           }
         }
       }
-    },
-    "«Holidays»" : {
-      "comment" : "\"Holidays\"",
-      "extractionState" : "manual",
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "«Праздник»"
-          }
-        }
-      }
-    },
-    "«New Year»" : {
-      "comment" : "\"New Year\"",
-      "extractionState" : "manual",
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "«Новый год»"
-          }
-        }
-      }
-    },
-    "🎉 %@ 🎉" : {
-
-    },
-    "Calendar" : {
-
-    },
-    "Country" : {
-
     },
     "Filters" : {
 
@@ -67,23 +59,84 @@
     "Holiday Type" : {
 
     },
+    "Holidays" : {
+      "comment" : "\"Holidays\"",
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Праздник"
+          }
+        }
+      }
+    },
     "List" : {
-
+      "comment" : "\"List\"",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Список"
+          }
+        }
+      }
     },
     "Loading holidays..." : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Загрузка праздников…"
+          }
+        }
+      }
+    },
+    "New Year’s Day" : {
+      "comment" : "\"New Year's Day\"",
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Новый год"
+          }
+        }
+      }
     },
     "No Image Available" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нет доступного изображения"
+          }
+        }
+      }
     },
     "Select Country" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Выбор Страны"
+          }
+        }
+      }
     },
     "Select Type" : {
 
     },
     "Settings" : {
-
+      "comment" : "\"Settings\"",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Настройки"
+          }
+        }
+      }
     }
   },
   "version" : "1.0"

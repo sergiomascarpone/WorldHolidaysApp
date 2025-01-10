@@ -13,9 +13,9 @@ struct HolidaysCalendarView: View {
     @State private var todayHoliday: Holiday?
     @State private var isLoading = true
     @State private var showConfetti = false
-
+    
     let service = HolidaysService()
-
+    
     var body: some View {
         NavigationView {
             ZStack {
@@ -30,7 +30,7 @@ struct HolidaysCalendarView: View {
                         )
                         .datePickerStyle(GraphicalDatePickerStyle())
                         .padding()
-
+                        
                         if let holiday = todayHoliday {
                             HolidayDetailsView(
                                 holiday: holiday,
@@ -52,7 +52,7 @@ struct HolidaysCalendarView: View {
             }
         }
     }
-
+    
     @MainActor
     private func loadHolidays() async {
         let year = Calendar.current.component(.year, from: Date())
@@ -60,14 +60,14 @@ struct HolidaysCalendarView: View {
         isLoading = true
         holidays = await service.fetchHolidays(for: year, country: countryCode)
         isLoading = false
-
+        
         updateTodayHoliday()
     }
-
+    
     private func updateTodayHoliday() {
         let calendar = Calendar.current
         let today = calendar.startOfDay(for: selectedDate)
-
+        
         todayHoliday = holidays.first { holiday in
             let holidayDate = calendar.startOfDay(for: holiday.date)
             return holidayDate == today

@@ -21,6 +21,7 @@ class HolidaysService {
         "Valentine's Day is named after Saint Valentine, a Catholic priest who lived in Rome in the 3rd century."
     ]
     
+    // Пока работает некоректно
     func fetchHolidays(for year: Int, country: String) async -> [Holiday] {
         guard URL(string: "https://calendarific.com/api/v2/holidays?api_key=\(apiKey)&country=\(country)&year=\(year)") != nil else {
             print("Ошибка формирования URL")
@@ -62,7 +63,7 @@ class HolidaysService {
                     )
                 }
                 print("Загружено праздников: \(holidays.count)")
-                // Сохранить загруженные данные в кэш
+                // Сохранить загруженные данные в кэш!!
                               cacheManager.saveHolidays(holidays)
                 return holidays
             } else {

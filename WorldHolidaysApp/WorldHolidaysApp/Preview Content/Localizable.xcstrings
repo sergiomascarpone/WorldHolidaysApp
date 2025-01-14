@@ -2,7 +2,14 @@
   "sourceLanguage" : "en",
   "strings" : {
     "🎉 %@ 🎉" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "🎉 %@ 🎉"
+          }
+        }
+      }
     },
     "Calendar" : {
       "comment" : "Calendar",
@@ -51,13 +58,34 @@
       }
     },
     "Filters" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Фильтры"
+          }
+        }
+      }
     },
     "Holiday Details" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Детали праздника"
+          }
+        }
+      }
     },
     "Holiday Type" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тип праздника"
+          }
+        }
+      }
     },
     "Holidays" : {
       "comment" : "\"Holidays\"",
@@ -125,7 +153,14 @@
       }
     },
     "Select Type" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Выбор типа"
+          }
+        }
+      }
     },
     "Settings" : {
       "comment" : "\"Settings\"",

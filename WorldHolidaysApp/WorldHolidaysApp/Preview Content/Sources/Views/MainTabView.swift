@@ -94,6 +94,6 @@ struct CustomTabBar: View {
         .background(Color(.systemBackground).shadow(radius: 4))
     }
 }
-#Preview {
-    MainTabView()
-}
+//#Preview {
+//    MainTabView()
+//}

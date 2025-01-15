@@ -15,13 +15,11 @@ struct MainTabView: View {
                     Image(systemName: "list.bullet")
                     Text("List")
                 }
-            
             HolidaysCalendarView()
                 .tabItem {
                     Image(systemName: "calendar")
                     Text("Calendar")
                 }
-            
             SettingsView()
                 .tabItem {
                     Image(systemName: "gear")
@@ -30,3 +28,6 @@ struct MainTabView: View {
         }
     }
 }
+//#Preview {
+//    MainTabView()
+//}

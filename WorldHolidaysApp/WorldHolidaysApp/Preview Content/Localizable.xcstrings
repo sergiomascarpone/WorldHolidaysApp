@@ -13,6 +13,7 @@
     },
     "Calendar" : {
       "comment" : "Calendar",
+      "extractionState" : "stale",
       "localizations" : {
         "ru" : {
           "stringUnit" : {
@@ -101,6 +102,7 @@
     },
     "List" : {
       "comment" : "\"List\"",
+      "extractionState" : "stale",
       "localizations" : {
         "ru" : {
           "stringUnit" : {
@@ -164,6 +166,7 @@
     },
     "Settings" : {
       "comment" : "\"Settings\"",
+      "extractionState" : "stale",
       "localizations" : {
         "ru" : {
           "stringUnit" : {

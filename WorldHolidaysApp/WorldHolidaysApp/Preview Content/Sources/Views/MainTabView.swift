@@ -4,7 +4,6 @@
 //
 //  Created by Sergio Mascarpone on 12.11.24.
 //
-
 import SwiftUI
 //struct MainTabView: View {
 //    var body: some View {
@@ -93,6 +92,6 @@ struct CustomTabBar: View {
         .background(Color(.systemBackground).shadow(radius: 4))
     }
 }
-#Preview {
-    MainTabView()
-}
+//#Preview {
+//    MainTabView()
+//}
